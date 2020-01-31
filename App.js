@@ -1,10 +1,13 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import {
+  Platform, StatusBar,
+  StyleSheet, View
+} from 'react-native';
 
 import AppNavigator from './navigation/AppNavigator';
 import VelibProvider from './providers/velibProvider';
 
-export default function App() {
+const App = () => {
   return (
     <View style={styles.container}>
       <VelibProvider>
@@ -21,3 +24,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+export default App;

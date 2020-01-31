@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useCallback } from 'react';
 import {
   StyleSheet, Modal, Text,
   FlatList, View, ActivityIndicator,
-  RefreshControl
+  ScrollView, RefreshControl, SafeAreaView
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 
@@ -10,8 +10,7 @@ import StationScreen from './StationScreen';
 import ListItemScreen from './ListItemScreen';
 import VelibContext from '../contexts/velibContext';
 
-
-const ListScreen = () => {
+const FavScreen = () => {
   const data                            = useContext(VelibContext);
   const [velib, setVelib]               = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -41,19 +40,22 @@ const ListScreen = () => {
 
   return (
     <View style={styles.container}>
-      {data.velibsList && data.velibsList.length > 0 &&
+      {data.favList && data.favList.length > 0 &&
         <FlatList
           style={styles.container}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
           renderItem={({ item }) => {
             return (
               <ListItemScreen item={item} stateModal={modalState}/>
             )
           }}
-          data={data.velibsList}
+          data={data.favList}
           keyExtractor={item => item.recordid}
         />
       }
-      {data.velibsList.length == 0 && <ActivityIndicator size="large" color="#0000ff" style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}/>}
+      {data.favList.length == 0 && <ActivityIndicator size="large" color="#0000ff" style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}/>}
       {velib &&
         <Modal
           animationType="slide"
@@ -70,12 +72,12 @@ const ListScreen = () => {
   );
 }
 
-ListScreen.navigationOptions = {
+FavScreen.navigationOptions = {
   headerTitle: () => {
     return (
       <View style={styles.screen_header}>
         <Icon name="dock" size={33} color={"#61dafb"}/>
-        <Text style={styles.screen_header_text}>Vélibs</Text>
+        <Text style={styles.screen_header_text}>Favoris</Text>
       </View>
     );
   },
@@ -118,4 +120,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ListScreen;
+export default FavScreen;

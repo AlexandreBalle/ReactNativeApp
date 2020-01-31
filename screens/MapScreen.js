@@ -3,14 +3,13 @@ import {
   ActivityIndicator, View,
   StyleSheet, Text
 } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView from 'react-native-maps';
 import { Icon } from 'react-native-elements';
 
 import StationScreen from './StationScreen';
 import UserMapMarkerScreen from './UserMapMarkerScreen';
 import VelibMapMarkerScreen from './VelibMapMarkerScreen';
 import VelibContext from '../contexts/velibContext';
-import { mapStyle } from "../mapStyle.json";
 
 const MapScreen = () => {
   const data = useContext(VelibContext);
@@ -24,14 +23,12 @@ const MapScreen = () => {
       {
         data.currentLocation.length !== 0 &&
         <MapView
-          provider={PROVIDER_GOOGLE}
-          customMapStyle={mapStyle}
           style={{ flex: 1 }}
           region={{
            latitude:data.currentLocation.latitude,
            longitude:data.currentLocation.longitude,
-           latitudeDelta: 0.3,
-           longitudeDelta: 0.3
+           latitudeDelta: 0.03,
+           longitudeDelta: 0.03
          }}
         >
           <UserMapMarkerScreen/>
@@ -46,14 +43,28 @@ const MapScreen = () => {
 }
 
 MapScreen.navigationOptions = {
-  title: 'Carte',
+  headerTitle: () => {
+    return (
+      <View style={styles.screen_header}>
+        <Icon name="dock" size={33} color={"#61dafb"}/>
+        <Text style={styles.screen_header_text}>Carte</Text>
+      </View>
+    );
+  },
   headerStyle: {
     backgroundColor: '#1B1D22',
   },
-  headerTintColor: "#fff",
-  headerTitleStyle: {
-    fontWeight: 'bold',
-  },
 };
+
+const styles = StyleSheet.create({
+  screen_header: {
+    flexDirection: 'row',
+  },
+  screen_header_text: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: "white"
+  }
+});
 
 export default MapScreen;

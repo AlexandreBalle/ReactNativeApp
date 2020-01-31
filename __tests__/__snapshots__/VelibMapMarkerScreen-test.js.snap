@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<AIRMapMarker
+  coordinate={
+    Object {
+      "latitude": 48.84764862079675,
+      "longitude": 2.3902582749724393,
+    }
+  }
+  onPress={[Function]}
+  stopPropagation={false}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "transparent",
+        "position": "absolute",
+      },
+      undefined,
+    ]
+  }
+>
+  <AIRMapCallout
+    alphaHitTest={false}
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+        },
+        Object {
+          "backgroundColor": "white",
+          "padding": 5,
+        },
+      ]
+    }
+    tooltip={true}
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "padding": 5,
+        }
+      }
+    >
+      <Text>
+        Diderot - Pierre Bourdan
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "grey",
+            "paddingTop": 5,
+          }
+        }
+      >
+        Nb de vélo dispo : 0/0
+Nb de vélo éléc. dispo : 10/21
+      </Text>
+    </View>
+  </AIRMapCallout>
+</AIRMapMarker>
+`;

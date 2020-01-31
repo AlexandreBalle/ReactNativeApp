@@ -5,7 +5,7 @@ const STORAGE_KEY     = 'VELIB_LIST';
 
 export const getVelib = async (currentLocation) => {
   try {
-    const url = (currentLocation.latitude && currentLocation.longitude) ? API_URL + "&geofilter.distance=" + currentLocation.latitude + "," + + currentLocation.longitude + ",100000" : API_URL;
+    const url = (currentLocation.latitude && currentLocation.longitude) ? API_URL + "&geofilter.distance=" + currentLocation.latitude + "," + + currentLocation.longitude + ",5000&rows=70" : API_URL;
 
     return fetch(url)
           .then((response) => response.json())

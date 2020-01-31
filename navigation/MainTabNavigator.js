@@ -5,6 +5,7 @@ import { Icon } from 'react-native-elements';
 
 import ListScreen from '../screens/ListScreen';
 import MapScreen from '../screens/MapScreen';
+import FavScreen from '../screens/FavScreen';
 
 const ListStack = createStackNavigator(
   {
@@ -32,9 +33,23 @@ MapStack.navigationOptions = {
   )
 };
 
+const FavStack = createStackNavigator(
+  {
+    Links:FavScreen,
+  }
+);
+
+FavStack.navigationOptions = {
+  tabBarLabel: 'Favoris',
+  tabBarIcon: ({ tintColor }) => (
+    <Icon name="star" size={20} color={tintColor}/>
+  )
+};
+
 export default createBottomTabNavigator({
   ListStack,
   MapStack,
+  FavStack
 }, {
     tabBarOptions: {
         showLabel: false, // hide labels

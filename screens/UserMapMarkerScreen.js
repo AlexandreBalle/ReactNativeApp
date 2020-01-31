@@ -7,14 +7,19 @@ import VelibContext from '../contexts/velibContext';
 
 
 const UserMapMarkerScreen = () => {
-  const data = useContext(VelibContext);
+  const data       = useContext(VelibContext);
+  const currentPos = "";
 
   useEffect(() => {
-    data.getPositionData();
+    fetchData();
   }, []);
 
+  const fetchData = async () => {
+    const currentPos = await data.getPositionData();
+  }
+
   return (
-    <MapView.Marker coordinate={data.currentLocation}>
+    <MapView.Marker coordinate={currentPos ? currentPos : data.currentLocation}>
       <View style={styles.user_marker}></View>
     </MapView.Marker>
   );
